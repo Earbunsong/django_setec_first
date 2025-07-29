@@ -7,6 +7,7 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
     hex_color = models.CharField(max_length=50, null=True)  # Default to white
+
     def __str__(self):
         return self.name
 
@@ -41,4 +42,11 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
+
+class Notes(models.Model):
+    content = models.CharField(max_length=500)
+    create_at = models.DateTimeField(auto_now_add=True)
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='notes')
+    def __str__(self):
+        return self.content
 

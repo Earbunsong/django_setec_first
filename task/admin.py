@@ -27,13 +27,13 @@ class TaskAdmin(admin.ModelAdmin):
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     pass
-    list_display = ['name', 'hex_color','task_count']
+    list_display = ['name', 'hex_color','task_count',]
     search_fields = ['name']
 
 
     def task_count(self, category: Category):
         return category.tasks.count()
-
+    task_count.short_description = 'Total Tasks'
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
     list_display = ['name', 'task_count']  # Show name and task count in admin
